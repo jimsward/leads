@@ -1,0 +1,35 @@
+<p>Leads Database.</p>
+
+<form id="entry">
+    <md-input-container>
+    <label>Type</label>
+    <input type="text" name="type" ng-model="lead.type">
+    </md-input-container>
+    <md-input-container>
+    <label>Name</label>
+    <input type="text" name="name" ng-model="lead.name">
+    </md-input-container>
+    <md-input-container>
+    <label>Contact</label>
+    <input type="text" name="contact" ng-model="lead.contact">
+    </md-input-container>
+    <md-input-container>
+    <label>Phone</label>
+    <input type="text" name="email" ng-model="lead.phone">
+    </md-input-container>
+    <md-input-container>
+    <label>email</label>
+    <input type="email" name="email" ng-model="lead.email">
+    </md-input-container>
+    <md-input-container>
+    <label>Actions</label>
+    <textarea ng-model="lead.actions"></textarea>
+    </md-input-container>
+
+
+
+
+
+
+    <md-button class="md-raised" ng-click="save()">Save</md-button>
+</form>

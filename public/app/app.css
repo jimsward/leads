@@ -1,0 +1,41 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+label {display : inline}
+input, textarea, p {display : block; margin-bottom :15px}
+form,p {padding : 20px}
+td, th {padding : 10px}
+
+md-toolbar {width : 100% !important;}
+
+md-table-container {margin-top : 80px; }
+
+form#entry md-input-container {display : block !important; width : 400px}
+
+form#editForm {width : 1200px}
+
+form#editForm md-input-container {width : 180px}
+
+tr {cursor : pointer}
