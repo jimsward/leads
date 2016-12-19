@@ -33,7 +33,6 @@ MongoClient.connect('mongodb://localhost:27017/leads', function (err, db) {
     var obj = req.body
     var _id = new ObjectID.createFromHexString(obj._id)
     delete obj._id //mongo will not allow a duplicate _id
-
     entries.update({_id: _id}, obj, function (err, result) {
       if (err)return next(err)
       res.status(200).send()
