@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="esri-map-example">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>Angular Esri Quick Start</title>
+
+    <link rel="stylesheet" href="//js.arcgis.com/4.1/esri/css/main.css">
+    <style type="text/css">
+        html, body, .esri-view {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body ng-controller="MapController as vm">
+<esri-scene-view map="vm.map" register-as="myMapView" view-options="{scale: 50000000, center: [-101.17, 21.78]}">
+</esri-scene-view>
+
+<!-- load Esri JSAPI -->
+<script src="//js.arcgis.com/4.1/"></script>
+<!-- load AngularJS -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+<!-- load angular-esri-map -->
+<script src="//unpkg.com/angular-esri-map@2"></script>
+
+<script type="text/javascript">
+    angular.module('esri-map-example', ['esri.map'])
+            .controller('MapController', function(esriLoader, esriRegistry, $scope) {
+                var self = this;
+                esriLoader.require(['esri/Map'], function(Map) {
+                    self.map = new Map({
+                        basemap: 'streets'
+                    })
+                    esriRegistry.get('myMapView').then(function(res) {
+                        // establish a click listener on the view in the response
+                        res.view.on('click', function(e) {
+                            // set or update the point property that is used in the html template
+                            self.mapViewPoint = e.mapPoint;
+
+                            console.log(self.mapViewPoint.latitude + ' , ' + self.mapViewPoint.longitude)
+
+                            // NOTE: $scope.$apply() is needed b/c the view's click event
+                            // happens outside of Angular's digest cycle
+                            $scope.$apply();
+                        });
+                    });
+
+                });
+            });
+</script>
+</body>
+</html>

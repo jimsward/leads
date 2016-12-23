@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="esri-map-docs">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <title>Angular Esri Quick Start</title>
+
+<link rel="stylesheet" href="//js.arcgis.com/4.2/esri/css/main.css">
+        <link href="//esri.github.io/calcite-bootstrap/assets/css/calcite-bootstrap-open.min.css" rel="stylesheet">
+    <style type="text/css">
+    html, body, .esri-view {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+</style>
+        <!-- load Esri JSAPI -->
+        <script src="//js.arcgis.com/4.2/"></script>
+        <!-- load AngularJS -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-sanitize.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.js"></script>
+        <script src="//pc035860.github.io/ngSelect/ngSelect.min.js"></script>
+        <script src="//pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
+
+
+        <!-- load angular-esri-map -->
+        <script src="//unpkg.com/angular-esri-map@2"></script>
+        <script src="mapCtls.js"></script>
+
+
+        <style type="text/css">
+            .esri-view {
+                height: 250px !important;
+            }
+        </style>
+</head>
+<body ng-controller="RegistryPatternCtrl as vm">
+
+    <!--<esri-map-view map="vm.map" view-options="{scale: 50000000, center: [-122.9961, 38.5019]}">
+    </esri-map-view>-->
+
+
+<h2>Registry Pattern</h2>
+
+<esri-map-view
+        map="vm.map"
+        register-as="myMapView"
+        view-options="vm.mapViewOptions"
+        on-create="vm.onMapViewCreated">
+</esri-map-view>
+
+<hr>
+
+<div class="web-gl-warning" ng-show="vm.showSceneViewError">WebGL is not supported on your platform/browser.</div>
+
+
+
+<div ng-controller="AnotherController as anotherCtrl">
+    <p ng-show="!anotherCtrl.mapViewPoint">
+        Click the MapView to see point X / Y.
+    </p>
+    <p id="mapViewClickInfo" ng-show="anotherCtrl.mapViewPoint">
+        Clicked MapView point X: {{ anotherCtrl.mapViewPoint.x }}, Y: {{ anotherCtrl.mapViewPoint.y }}
+    </p>
+
+
+
+</div>
+
+</body>
+
+
+
+
+
+    <!--<script type="text/javascript">
+    angular.module('esri-map-example', ['esri.map'])
+        .controller('MapController', function(esriLoader) {
+            var self = this;
+            esriLoader.require(['esri/Map'], function(Map) {
+                self.map = new Map({
+                    basemap: 'streets'
+                });
+            });
+        });
+</script>-->
+</body>
+</html>/**
+ * Created by Jim on 12/20/2016.
+ */
