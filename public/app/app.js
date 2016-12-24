@@ -8,9 +8,9 @@ angular.module('myApp', [
   'ngMaterial',
   'md.data.table',
   'myApp.editFormCtl',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  'myApp.version',
+    'esri.map'
+]).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/view1'});

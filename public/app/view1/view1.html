@@ -1,35 +1,25 @@
-<p>Leads Database.</p>
 
-<form id="entry">
-    <md-input-container>
-    <label>Type</label>
-    <input type="text" name="type" ng-model="lead.type">
-    </md-input-container>
-    <md-input-container>
-    <label>Name</label>
-    <input type="text" name="name" ng-model="lead.name">
-    </md-input-container>
-    <md-input-container>
-    <label>Contact</label>
-    <input type="text" name="contact" ng-model="lead.contact">
-    </md-input-container>
-    <md-input-container>
-    <label>Phone</label>
-    <input type="text" name="email" ng-model="lead.phone">
-    </md-input-container>
-    <md-input-container>
-    <label>email</label>
-    <input type="email" name="email" ng-model="lead.email">
-    </md-input-container>
-    <md-input-container>
-    <label>Actions</label>
-    <textarea ng-model="lead.actions"></textarea>
-    </md-input-container>
+<div ng-controller="View1Ctrl as vm">
+    <div style="height : 100%">
+<esri-scene-view map="vm.map" register-as="myMapView" view-options="{scale: 50000000, center: [-101.17, 21.78]}">
+</esri-scene-view>
+    </div>
+    <div id="dialog" title="Donor Info Entry">
+        <form id="dialogForm" ng-submit="submit()">
+            <label>First Name</label>
+            <input type="text" ng-model="first" id="first" name="first" ng-required="true">
+            <label>Last Name</label>
+            <input type="text" ng-model="last" id="last" name="last" ng-required="true">
+            <label>Contact Number</label>
+            <input type="text" ng-model="contact" id="contact" name="contact" ng-required="true">
+            <label>Email Address</label>
+            <input type="email" ng-model="email" id="email" name="email" ng-required="true">
+            <label>Blood Group</label>
+            <input type="text" ng-model="group" id="group" name="group" ng-required="true">
+            <input type="submit" id="submit" value="Submit" />
+        </form>
+    </div>
 
 
 
-
-
-
-    <md-button class="md-raised" ng-click="save()">Save</md-button>
-</form>
+</div>

@@ -6,13 +6,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Blood</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
@@ -21,16 +23,14 @@
 <body>
 
 
-<md-toolbar></md-toolbar>
-<md-toolbar style="position : fixed; width:inherit; text-align: center; font-family: 'Roboto'; top:64px; background-color: white">
-  <div  layout-align="left" >
-    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-      <md-nav-item md-nav-click="#!/view1" name="enter">Donor</md-nav-item>
-      <md-nav-item md-nav-click="#!/view2" name="view">Patient</md-nav-item>
 
-    </md-nav-bar>
+  <div  layout-align="left" >
+    <ul >
+      <li><a href="#/view1">Donor</a> </li>
+      <li><a href="#/view2">Patient</a> </li>
+
+    </ul>
   </div>
-</md-toolbar>
 
 
   <!--[if lt IE 7]>
@@ -49,6 +49,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-animate.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-aria.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-messages.js"></script>
+
+<!-- load Esri JSAPI -->
+<script src="//js.arcgis.com/4.1/"></script>
+<!-- load AngularJS -->
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>-->
+<!-- load angular-esri-map -->
+<script src="//unpkg.com/angular-esri-map@2"></script>
+
+
   <link href="md-data-table/md-data-table.min.css" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="md-data-table/md-data-table.min.js"></script>  <script src="app.js"></script>
   <script src="view1/view1.js"></script>

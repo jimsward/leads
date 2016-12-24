@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   console.log('default')
   return res.redirect( 'app/index.html' )
 });
-MongoClient.connect('mongodb://localhost:27017/leads', function (err, db) {
+MongoClient.connect('mongodb://localhost:27017/donors', function (err, db) {
   if (err) throw err
   var entries = db.collection("entries");
 

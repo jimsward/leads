@@ -8,21 +8,37 @@ angular.module('myApp.view1', ['ngRoute'])
     controller: 'View1Ctrl'
   });
 }])
+    .controller('View1Ctrl', function(esriLoader, esriRegistry, $scope) {
+      var self = this;
+      esriLoader.require(['esri/Map'], function(Map) {
+        self.map = new Map({
+          basemap: 'streets'
+        })
+        esriRegistry.get('myMapView').then(function(res) {
+          // establish a click listener on the view in the response
+          res.view.on('click', function(e) {
+            // set or update the point property that is used in the html template
+            self.mapViewPoint = e.mapPoint;
 
-.controller('View1Ctrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
-  $rootScope.currentNavItem="enter"
+            console.log(self.mapViewPoint.latitude + ' , ' + self.mapViewPoint.longitude)
+
+            // NOTE: $scope.$apply() is needed b/c the view's click event
+            // happens outside of Angular's digest cycle
+            $scope.$apply();
 
 
-  $scope.lead = {}
-  $scope.save = function(){
-    var data = $scope.lead
-    console.dir('data ' + data)
-    $http.post('/newEntry', data).then( function successCallback(){location.reload()}, function errorCallback(result){
-console.log(result)
-    })
-  }
+                  $( "#dialog" ).dialog({
+                      modal: true
+                  });
+$scope.submit = function(){
+console.log($scope.first)
+}
+          });
+        });
 
-}]);
+      });
+    });
+
 
 
 

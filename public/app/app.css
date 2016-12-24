@@ -39,3 +39,7 @@ form#editForm {width : 1200px}
 form#editForm md-input-container {width : 180px}
 
 tr {cursor : pointer}
+
+.esri-view-root {height : 800px}
+
+#dialog {background-color : #fff}
