@@ -12,6 +12,7 @@ MongoClient.connect('mongodb://localhost:27017/donors', function (err, db) {
   var entries = db.collection("entries");
 
   router.post('/newEntry', function (req, res, next) {
+    console.dir(req.body)
 
     var data = req.body
     console.dir(data)
@@ -36,6 +37,11 @@ MongoClient.connect('mongodb://localhost:27017/donors', function (err, db) {
     entries.update({_id: _id}, obj, function (err, result) {
       if (err)return next(err)
       res.status(200).send()
+    })
+  })
+  router.get('/user/:id', function (req, res, next) {
+    entries.find().toArray(function (err, items) {
+      return res.send({'entries': items})
     })
   })
 })

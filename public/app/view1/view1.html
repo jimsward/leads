@@ -7,17 +7,18 @@
     <div id="dialog" title="Donor Info Entry">
         <form id="dialogForm" ng-submit="submit()">
             <label>First Name</label>
-            <input type="text" ng-model="first" id="first" name="first" ng-required="true">
+            <input type="text" ng-model="donor.first" id="first" name="first" ng-required="true">
             <label>Last Name</label>
-            <input type="text" ng-model="last" id="last" name="last" ng-required="true">
+            <input type="text" ng-model="donor.last" id="last" name="last" ng-required="true">
             <label>Contact Number</label>
-            <input type="text" ng-model="contact" id="contact" name="contact" ng-required="true">
+            <input type="text" ng-model="donor.contact" id="contact" name="contact" ng-required="true">
             <label>Email Address</label>
-            <input type="email" ng-model="email" id="email" name="email" ng-required="true">
+            <input type="email" ng-model="donor.email" id="email" name="email" ng-required="true">
             <label>Blood Group</label>
-            <input type="text" ng-model="group" id="group" name="group" ng-required="true">
+            <input type="text" ng-model="donor.group" id="group" name="group" ng-required="true">
             <input type="submit" id="submit" value="Submit" />
         </form>
+        <div ng-show="success">{{donor.successmsg}}</div>
     </div>
 
 
