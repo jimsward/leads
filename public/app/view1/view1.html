@@ -5,7 +5,7 @@
 </esri-scene-view>
     </div>
     <div id="dialog" title="Donor Info Entry">
-        <form id="dialogForm" ng-submit="submit()">
+        <form id="dialogForm" ng-submit="submit()" ng-hide="success">
             <label>First Name</label>
             <input type="text" ng-model="donor.first" id="first" name="first" ng-required="true">
             <label>Last Name</label>
@@ -18,6 +18,7 @@
             <input type="text" ng-model="donor.group" id="group" name="group" ng-required="true">
             <input type="submit" id="submit" value="Submit" />
         </form>
+        <p>Latitude: {{donor.latitude}} Longitude: {{donor.longitude}}</p>
         <div ng-show="success">{{donor.successmsg}}</div>
     </div>
 

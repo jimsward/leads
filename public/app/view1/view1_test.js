@@ -6,11 +6,18 @@ describe('myApp.view1 module', function() {
 
   describe('view1 controller', function(){
 
-    it('should ....', inject(function($controller) {
+    it('should ....', inject(function($controller, $rootScope) {
       //spec body
-      var view1Ctrl = $controller('View1Ctrl');
+    /*  var view1Ctrl = $controller('View1Ctrl', 'esriLoader');
       expect(view1Ctrl).toBeDefined();
-    }));
+*/
+      var scope = $rootScope.$new()
+      var view1Ctrl = $controller('View1Ctrl', { $scope: scope });
+      expect(view1Ctrl).toBeDefined();
 
-  });
+
+}));
+
+
+});
 });

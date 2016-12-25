@@ -1,22 +1,10 @@
-<md-table-container>
-<table md-table>
-  <thead md-head>
-  <th md-column>Type</th>
-  <th md-column>Name</th>
-  <th md-column>Contact</th>
-  <th md-column>Phone</th>
-  <th md-column>email</th>
-  <th md-column>Actions</th>
-  </thead>
-  <tbody md-body>
-  <tr md-row ng-repeat="lead in entries" ng-click="openForm(lead, $index); $event.stopImmediatePropagation();" id={{$index}}>
-    <td md-cell>{{lead.type}}</td>
-    <td md-cell>{{lead.name}}</td>
-    <td md-cell>{{lead.contact}}</td>
-    <td md-cell>{{lead.phone}}</td>
-    <td md-cell>{{lead.email}}</td>
-    <td md-cell>{{lead.actions}}</td>
-  </tr>
-  </tbody>
-</table>
-</md-table-container>
+<div ng-controller="View2Ctrl as vm">
+  <div style="height : 100%">
+    <esri-scene-view map="vm.map" register-as="myMapView" view-options="{scale: 50000000, center: [-101.17, 21.78]}">
+    </esri-scene-view>
+  </div>
+
+
+
+
+</div>

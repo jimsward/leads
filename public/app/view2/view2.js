@@ -9,24 +9,54 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$http', '$scope', '$rootScope', '$compile', function($http, $scope, $rootScope, $compile) {
-  var promise = $http({ url : '/getEntries', method : 'GET' })
-  promise.then(function successCallback(response){
-    $scope.entries = response.data.entries
-    console.dir(response)
-  }, function errorCallback(response){
-    console.log('error ' + response)
-  }
-  )
+    .controller('View2Ctrl', function(esriLoader, esriRegistry, $scope, $http, $location) {
+      $scope.success = false
+      $scope.donor = {}
+      var self = this;
+      esriLoader.require(['esri/Map', 'esri/layers/GraphicsLayer'], function(Map) {
+        self.map = new Map({
+          basemap: 'streets'
+        })
 
-  $scope.openForm = function(lead, index){
-    angular.element('edit-form').remove()
-console.dir(lead)
-    $rootScope.selected = lead
-console.log(typeof index)
-    var sindex = index.toString()
-    $('tr#' + sindex).replaceWith($compile("<edit-form/>")($scope));
+        //GraphicsLayer.add(new Graphic({type : point, x : 34.52424638936832, y : -86.17346851184304}, MarkerSymbol));
+        esriRegistry.get('myMapView').then(function(res) {
+          // establish a click listener on the view in the response
+          res.view.on('click', function(e) {
+            // set or update the point property that is used in the html template
+            self.mapViewPoint = e.mapPoint;
 
-  }
-  }]);
+            console.log(self.mapViewPoint.latitude + ' , ' + self.mapViewPoint.longitude)
+            $scope.donor.latitude = self.mapViewPoint.latitude
+            $scope.donor.longitude = self.mapViewPoint.longitude
+
+
+            // NOTE: $scope.$apply() is needed b/c the view's click event
+            // happens outside of Angular's digest cycle
+            $scope.$apply();
+
+
+            $( "#dialog" ).dialog({
+              modal: true
+            });
+            $scope.submit = function(){
+              console.log($scope.first)
+              var data = $scope.donor
+              console.dir(data)
+              $http({method : 'POST', url : '/newEntry', data : data }).then(function successCallback(){
+                    $scope.success = true
+                    var host = location.host;
+                    var lastFour = $scope.donor.contact.toString().slice(6)
+                    var link = host + '/' + 'user/' + $scope.donor.last + lastFour
+
+                    $scope.donor.successmsg = 'Link to edit/delete your info: ' +  link
+                  },function errorCallback(){
+                    console.log('Error Callback')
+                  }
+              )
+            }
+          });
+        });
+
+      });
+    });
 
