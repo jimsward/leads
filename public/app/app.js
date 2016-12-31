@@ -15,5 +15,10 @@ angular.module('myApp', [
   $routeProvider.when('/view2', {
     templateUrl: 'view2/view2.html',
     controller: 'View2Ctrl'
-  }).otherwise({redirectTo: '/view1'});
+  })
+ /* .when('/view1/:user', {
+        templateUrl: 'view1/view1.html',
+        controller: 'View1Ctrl'
+      })*/
+      .otherwise({redirectTo: '/view1'});
 }]);

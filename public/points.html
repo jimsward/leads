@@ -98,7 +98,9 @@
                     symbol = fillSymbol;
                 }
 console.dir(evt.geometry.points)
-                map.graphics.add(new Graphic(evt.geometry, symbol));
+                evt.geometry.points.push([-13740902.516543403, 15675003.725022174])
+//                map.graphics.add(new Graphic(evt.geometry, symbol));
+                map.graphics.add(new Graphic({points : [-13740902.516543403, 15675003.725022174]}, symbol));
             }
         });
     </script>

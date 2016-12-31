@@ -3,13 +3,43 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('default')
-  return res.redirect( 'app/index.html' )
-});
+
 MongoClient.connect('mongodb://localhost:27017/donors', function (err, db) {
   if (err) throw err
-  var entries = db.collection("entries");
+  var entries = db.collection("entries")
+
+
+  router.get('/', function (req, res, next) {
+    var link = req.query.link
+    return res.redirect(307,  '/app/index.html#/view1' + '?link=' + link)
+
+
+
+    /*entries.find(query, function (err, item) {
+      console.log(typeof item)
+      var str = item;
+      var jsonObj = JSON.parse(str);
+      return res.redirect(307, req.hostname + '/app/index.html#/view1' + item)
+    })*/
+  })
+
+
+  router.get('/user', function(req, res, next){
+
+    console.dir(req.query)
+
+    var query = {}
+    query.key = req.query.link
+
+    console.log('query: ' + query.key)
+
+    entries.find(query).toArray( function(err, result){
+      if (err) { console.dir(err); return  next(err)}
+      console.log(result)
+      return res.send(result[0])
+    })
+
+  })
 
   router.post('/newEntry', function (req, res, next) {
     console.dir(req.body)
@@ -40,16 +70,7 @@ MongoClient.connect('mongodb://localhost:27017/donors', function (err, db) {
       res.status(200).send()
     })
   })
-  router.get('/user/:id', function (req, res, next) {
-    var link = req.params.id
-    var query = {}
-    query.last = link.slice(0, -4)
-    query.contact = link.slice(link.length - 4)
-    console.dir(query)
-    entries.find(query, function (err, item) {
-      return res.send({'entries': item})
-    })
-  })
+
 })
 
 
